@@ -13,11 +13,16 @@ def create_subject_dialog(teacher_id):
 
     if st.button("Create Subject Now", type='primary', width='stretch'):
         if sub_id and sub_name and sub_section:
+            clean_code = sub_id.strip()
             try:
-                create_subject(sub_id, sub_name, sub_section, teacher_id)
-                st.toast("Subject Created Succesfully!")
+                create_subject(clean_code, sub_name.strip(), sub_section.strip(), teacher_id)
+                st.toast("Subject Created Successfully!")
                 st.rerun()
             except Exception as e:
-                st.error(f"Error: {str(e)}")
+                err_str = str(e)
+                if '23505' in err_str or 'unique constraint' in err_str or 'already exists' in err_str:
+                    st.error(f"Subject Code '{clean_code}' already exists! Please enter a unique subject code.")
+                else:
+                    st.error(f"Failed to create subject: {err_str}")
         else:
             st.warning("Please fill all the fields")

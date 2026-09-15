@@ -184,7 +184,7 @@ def teacher_tab_take_attendance():
                             'is_present': bool(is_present)
                         })
 
-                attendance_result_dialog(pd.DataFrame(results), attendance_to_log)
+                    attendance_result_dialog(pd.DataFrame(results), attendance_to_log)
 
     with c3:
         if st.button('Use Voice Attendance', type='primary', width='stretch', icon=':material/mic:'):
@@ -214,23 +214,27 @@ def teacher_tab_manage_subjects():
     # LIST all SUBJECTS
     subjects = get_teacher_subjects(teacher_id)
     if subjects:
-        for sub in subjects:
+        cols = st.columns(2)
+        for i, sub in enumerate(subjects):
             stats = [
                 ("🫂", "Students", sub['total_students']),
                 ("🕰️", "Classes", sub['total_classes']),
             ]
-        def share_btn():
-            if st.button(f"Share Code: {sub['name']}", key=f"share_{sub['subject_code']}", icon=":material/share:"):
-                share_subject_dialog(sub['name'], sub['subject_code'])
-            st.space()
+            def make_share_callback(s):
+                def share_btn():
+                    if st.button(f"Share Code: {s['name']}", key=f"share_{s['subject_code']}_{s['subject_id']}", icon=":material/share:"):
+                        share_subject_dialog(s['name'], s['subject_code'])
+                    st.space()
+                return share_btn
 
-        subject_card(
-            name = sub['name'],
-            code = sub['subject_code'],
-            section = sub['section'],
-            stats=stats,
-            footer_callback=share_btn
-        )
+            with cols[i % 2]:
+                subject_card(
+                    name = sub['name'],
+                    code = sub['subject_code'],
+                    section = sub['section'],
+                    stats = stats,
+                    footer_callback = make_share_callback(sub)
+                )
     else:
         st.info("NO SUBJECTS FOUND. CREATE ONE ABOVE")
 
