@@ -43,8 +43,7 @@ def style_base_layout():
 # asdasd
     st.markdown("""
         <style>
-        @import url('https://fonts.googleapis.com/css2?family=Climate+Crisis:YEAR@1979&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Outfit:wght@400;500;600;700;800&display=swap');
 
                 
          /* Hide Top Bar of streamlit */
@@ -58,22 +57,27 @@ def style_base_layout():
             }
 
             h1 {
-                font-family: 'Climate Crisis', sans-serif !important;
-                font-size: 3.5rem !important;
-                line-height:1.1 1important;
-                margin-bottom:0rem !important;
+                font-family: 'Unbounded', sans-serif !important;
+                font-size: 2.75rem !important;
+                font-weight: 900 !important;
+                letter-spacing: -0.02em !important;
+                line-height: 1.1 !important;
+                margin-bottom: 0rem !important;
             }
                 
 
             h2 {
-                font-family: 'Climate Crisis', sans-serif !important;
-                font-size: 2rem !important;
-                line-height:0.9 !important;
-                margin-bottom:0rem !important;
+                font-family: 'Unbounded', sans-serif !important;
+                font-size: 1.75rem !important;
+                font-weight: 800 !important;
+                letter-spacing: -0.01em !important;
+                line-height: 1.2 !important;
+                margin-bottom: 0rem !important;
+                color: #2C3258 !important;
             }
                 
-            h3, h4, p {
-                font-family: 'Outfit', sans-serif;    
+            h3, h4, p, label, button, input {
+                font-family: 'Outfit', sans-serif !important;    
             }
                 
 
