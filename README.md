@@ -57,6 +57,7 @@ https://github.com/krishx06/Attendly-Landing
 - Streamlit
 
 ## Backend & Database
+- Flask
 - Supabase
 - PostgreSQL
 
